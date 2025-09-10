@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.navbar {
+  position: fixed;
+  top: 0;           /* Add this - positions navbar at top */
+  left: 0;          /* Add this - positions navbar at left edge */
+  width: 100%;      /* Add this - makes navbar full width */
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 1000;    /* Add this - ensures navbar stays on top */
+}
+
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+.navbar .search-container {
+  float: right;
+}
+
+.navbar input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.navbar .search-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar .search-container button:hover {
+  background: #ccc;
+}
+
+/* Center dropdown styles */
+#centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.center-dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: rgb(3, 38, 155);
+  padding: 14px 16px;
+  background-color: transparent;
+  font-family: inherit;
+  margin: 10px 0;
+  display: block;
+  width: 200px;
+}
+
+.center-dropdown .dropbtn:hover {
+  background-color: red !important;
+  color: white !important;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar .search-container {
+    float: none;
+  }
+  .navbar a, .navbar input[type=text], .navbar .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .navbar input[type=text] {
+    border: 1px solid #ccc;  
+  }
+  #centered {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-top: 20px;
+  }
+}
+</style>
+</head>
+<body style="background-color:white; background-image: url('./6872246.jpg'); background-size: cover; background-repeat: no-repeat;">
+
+<div class="navbar">
+  <a href="home.html">Home</a>
+  <a href="news.html">News</a>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('myDropdown')">Grade
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown">
+      <a href="college.html">middle school</a>
+      <a href="lycee.html">highschool</a>
+    </div>
+  </div> 
+  <div class="search-container">
+    <form action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>
+
+<div class="center-dropdown" id="centered">  
+  <p class="dropbtn" onclick="toggleDropdown('dropdown1')">
+    <b>>Units</b>
+  </p>
+  <div class="dropdown-content" id="dropdown1">
+    <a href="unit1.pdf">unit1.pdf</a>
+    <a href="unit2.pdf">unit2.pdf</a>
+  </div>
+
+  <p class="dropbtn" onclick="toggleDropdown('dropdown2')">
+    <b>>Lessons</b>
+  </p>
+  <div class="dropdown-content" id="dropdown2">
+    <a href="./active-passive-verb-forms.pdf">active-passive-verb-forms.pdf</a>
+  </div>
+
+  <p class="dropbtn" onclick="toggleDropdown('dropdown3')">
+    <b>>Previous exams</b>
+  </p> 
+  <div class="dropdown-content" id="dropdown3">
+    <a href="./test-2-model-1-english-2-bac-first-term.pdf">test-first-term.pdf</a>
+  </div>
+</div>
+
+<script>
+function toggleDropdown(dropdownId) {
+  // Close all other dropdowns first
+  var dropdowns = document.getElementsByClassName("dropdown-content");
+  for (var i = 0; i < dropdowns.length; i++) {
+    if (dropdowns[i].id !== dropdownId) {
+      dropdowns[i].classList.remove('show');
+    }
+  }
+  
+  // Toggle the clicked dropdown
+  document.getElementById(dropdownId).classList.toggle("show");
+}
+
+// Close dropdowns when clicking outside
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn') && !event.target.closest('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+      dropdowns[i].classList.remove('show');
+    }
+  }
+}
+</script>
+
+</body>
+</html>
